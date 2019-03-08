@@ -25,4 +25,3 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
  
         LogsticReg(test.data, Mvalue="8",max.score=1)
 }
-

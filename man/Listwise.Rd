@@ -22,4 +22,3 @@ This function deletes examinees who report missing responses.
  
         Listwise(test.data, Mvalue="8")
 }
-

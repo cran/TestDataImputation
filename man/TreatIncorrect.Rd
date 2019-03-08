@@ -22,4 +22,3 @@ This function replaces all missing responses by zero.
  
         TreatIncorrect(test.data, Mvalue="8")
 }
-

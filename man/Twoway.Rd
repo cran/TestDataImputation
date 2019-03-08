@@ -8,7 +8,7 @@ Twoway(test.data, Mvalue = "NA", max.score = 1)
 }
 \arguments{
 \item{test.data}{Test data set (a data frame or a matrix) containing missing responses. 
-Missing values are coded as NA or other values (e.g., 8, 9).#' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
+Missing values are coded as NA or other values (e.g., 8, 9).#'}
 
 \item{Mvalue}{Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
 
@@ -20,6 +20,8 @@ A data frame with all missing responses replaced by integrated two-way imputed v
 \description{
 This function imputes for all missing responses using two-way imputation.
 Integrated responses are obtained by rounding imputed values to the closest possible response value.
+If a case showed missingness on all the variables (i.e., empty record), the missing values are 
+replaced by item means first.
 }
 \examples{
  
@@ -33,4 +35,3 @@ item nonresponse in questionnaire data is nonignorable."
  Multivariate Behavioral Research, 35(3), 321-364.
 }
 }
-

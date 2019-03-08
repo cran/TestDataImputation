@@ -25,4 +25,3 @@ Integrated scores for items are obtained by rounding their means to the closest 
  
         ItemMean(test.data, Mvalue="8",max.score=1)
 }
-

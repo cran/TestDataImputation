@@ -3,14 +3,15 @@
 #' @description This function imputes for all missing responses using selected miputation methods.
 #' Integrated scores are obtained by rounding imputed values to the closest possible response value.
 #' @param test.data  Test data set (a data frame or a matrix) containing missing responses. 
-#' Missing values are coded as NA or other values (e.g., 8, 9).#' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.
+#' Missing values are coded as NA or other values (e.g., 8, 9).
 #' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.
 #' @param max.score  The max possible response value in test data. By default max.score=1 (i.e.,binary test data).
 #' @param method  Missing response imputation methods. "LW" (by default) represents listwise that deletes all examinees
 #'  who reported missing responses; "IN" means treating all missing responses as incorrect; "PM" imputes for 
 #'  all missing responses of an examinee by his/her mean on the available items; "IM" imputes for all missing responses 
 #'  of an item by its mean on the available responses; "TW" imputes for all missing responses using two-way 
-#'  imputation.; "LR" imputes for all missing responses using logistic regression; "EM" imputes 
+#'  imputation (if an examinee has no response to all items, the missing responses 
+#'  are replaced by item means first).; "LR" imputes for all missing responses using logistic regression; "EM" imputes 
 #'  for all missing responses using EM imputation.
 #' @return A data frame with all missing responses replaced by integrated imputed values.
 #' @import stats mice Amelia
@@ -77,6 +78,10 @@ ImputeTestData<-function (test.data, Mvalue="NA",max.score=1, method ="LW")
     } else if (method=="TW"){
       if (Mvalue == "NA") {
         IM<- colMeans(test.data, na.rm=T)
+        for (r in 1:nrow(test.data)) {
+          if (sum(is.na(test.data[r,]))==ncol(test.data)){
+            test.data[r,]<-IM
+          }}
         PM<-rowMeans(test.data,  na.rm = T)
         OM<-mean(as.matrix(test.data),na.rm=T)
         for (i in 1:nrow(test.data)) { 
@@ -90,6 +95,10 @@ ImputeTestData<-function (test.data, Mvalue="NA",max.score=1, method ="LW")
           }}
       } else {test.data[test.data==Mvalue]<-NA
       IM<- colMeans(test.data, na.rm=T)
+      for (r in 1:nrow(test.data)) {
+        if (sum(is.na(test.data[r,]))==ncol(test.data)){
+          test.data[r,]<-IM
+        }}
       PM<-rowMeans(test.data,  na.rm = T)
       OM<-mean(as.matrix(test.data),na.rm=T)
       for (i in 1:nrow(test.data)) { 

@@ -4,11 +4,12 @@
 \alias{ImputeTestData}
 \title{This main function imputes for missing responses using selected method}
 \usage{
-ImputeTestData(test.data, Mvalue = "NA", max.score = 1, method = "LW")
+ImputeTestData(test.data, Mvalue = "NA", max.score = 1,
+  method = "LW")
 }
 \arguments{
 \item{test.data}{Test data set (a data frame or a matrix) containing missing responses. 
-Missing values are coded as NA or other values (e.g., 8, 9).#' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
+Missing values are coded as NA or other values (e.g., 8, 9).}
 
 \item{Mvalue}{Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
 
@@ -18,7 +19,8 @@ Missing values are coded as NA or other values (e.g., 8, 9).#' @param Mvalue  Mi
 who reported missing responses; "IN" means treating all missing responses as incorrect; "PM" imputes for 
 all missing responses of an examinee by his/her mean on the available items; "IM" imputes for all missing responses 
 of an item by its mean on the available responses; "TW" imputes for all missing responses using two-way 
-imputation.; "LR" imputes for all missing responses using logistic regression; "EM" imputes 
+imputation (if an examinee has no response to all items, the missing responses 
+are replaced by item means first).; "LR" imputes for all missing responses using logistic regression; "EM" imputes 
 for all missing responses using EM imputation.}
 }
 \value{
@@ -32,4 +34,3 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
  
         ImputeTestData(test.data, Mvalue="8",max.score=1, method ="TW")
 }
-
