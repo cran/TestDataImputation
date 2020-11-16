@@ -4,8 +4,13 @@
 \alias{ImputeTestData}
 \title{This main function imputes for missing responses using selected method}
 \usage{
-ImputeTestData(test.data, Mvalue = "NA", max.score = 1,
-  method = "LW")
+ImputeTestData(
+  test.data,
+  Mvalue = "NA",
+  max.score = 1,
+  method = "LW",
+  round.decimal = 0
+)
 }
 \arguments{
 \item{test.data}{Test data set (a data frame or a matrix) containing missing responses. 
@@ -15,13 +20,19 @@ Missing values are coded as NA or other values (e.g., 8, 9).}
 
 \item{max.score}{The max possible response value in test data. By default max.score=1 (i.e.,binary test data).}
 
-\item{method}{Missing response imputation methods. "LW" (by default) represents listwise that deletes all examinees
-who reported missing responses; "IN" means treating all missing responses as incorrect; "PM" imputes for 
-all missing responses of an examinee by his/her mean on the available items; "IM" imputes for all missing responses 
-of an item by its mean on the available responses; "TW" imputes for all missing responses using two-way 
-imputation (if an examinee has no response to all items, the missing responses 
-are replaced by item means first).; "LR" imputes for all missing responses using logistic regression; "EM" imputes 
-for all missing responses using EM imputation.}
+\item{method}{Missing response imputation methods. 
+"LW" (by default) represents listwise that deletes all examinees
+who reported missing responses (see De Ayala et al. 2001) <doi:10.1111/j.1745-3984.2001.tb01124.x>;
+"IN" means treating all missing responses as incorrect (see Lord, 1974 <doi: 10.1111/j.1745-3984.1974.tb00996.x>; 
+Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>); 
+"PM" imputes for all missing responses of an examinee by his/her mean on the available items; 
+"IM" imputes for all missing responses of an item by its mean on the available responses; 
+"TW" imputes for all missing responses using two-way imputation (if an examinee has no response to all items, 
+the missing responses are replaced by item means first; see Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); 
+"LR" imputes for all missing responses using logistic regression; 
+"EM" imputes for all missing responses using EM imputation (see Finch, 2008) <doi: 10.1111/j.1745-3984.2008.00062.x>.}
+
+\item{round.decimal}{The number of digits or decimal places for the imputed value. The default value is 0.}
 }
 \value{
 A data frame with all missing responses replaced by integrated imputed values.
@@ -32,5 +43,42 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
 }
 \examples{
  
-        ImputeTestData(test.data, Mvalue="8",max.score=1, method ="TW")
+        ImputeTestData(test.data, Mvalue="8",max.score=1, method ="TW",round.decimal=0)
+}
+\references{
+{
+ De Ayala, R. J., Plake, B. S., & Impara, J. C. (2001). 
+"The impact of omitted responses on the accuracy of ability estimation in item response theory."
+ Journal of Educational Measurement, 38(3), 213–234. doi:10.1111/j.1745-3984.2001.tb01124.x. 
+}
+
+{
+ Finch, H. (2008).
+"Estimation of Item Response Theory Parameters in the Presence of Missing Data."
+ Journal of Educational Measurement, 45(3), 225-245. doi: 10.1111/j.1745-3984.2008.00062.x. 
+}
+
+{
+ Lord, F. M. (1974).
+" Quick estimates of the relative efficiency of two tests as a function of ability level."
+ Journal of Educational Measurement, 11(4), 247–254. doi: 10.1111/j.1745-3984.1974.tb00996.x. 
+}
+
+{
+ Mislevy, R. J., & Wu, P. K. (1996).
+" Missing responses and IRT ability estimation: Omits, choice, time limits, and adaptive testing. "
+ ETS Research Report Series, 1996(2), i-36. doi: 10.1002/j.2333-8504.1996.tb01708.x. 
+}
+
+{
+Pohl, S., Gräfe, L., & Rose, N. (2014).
+"Dealing with omitted and not-reached items in competence tests evaluating approaches accounting for missing responses in item response theory models. "
+Educational and Psychological Measurement, 74(3), 423–452. doi: 10.1177/0013164413504926. 
+}
+
+{
+Sijtsma, K., & Van der Ark, L. A. (2003). 
+"Investigation and treatment of missing item scores in test and questionnaire data."
+ Multivariate Behavioral Research, 38(4), 505-528. doi: 10.1207/s15327906mbr3804_4.
+}
 }

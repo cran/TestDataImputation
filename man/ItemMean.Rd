@@ -4,7 +4,7 @@
 \alias{ItemMean}
 \title{Item Mean (IM) Imputation}
 \usage{
-ItemMean(test.data, Mvalue = "NA", max.score = 1)
+ItemMean(test.data, Mvalue = "NA", max.score = 1, round.decimal = 0)
 }
 \arguments{
 \item{test.data}{Test data set (a data frame or a matrix) containing missing responses. 
@@ -13,6 +13,8 @@ Missing values are coded as NA or other values (e.g., 8, 9).}
 \item{Mvalue}{Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
 
 \item{max.score}{The max possible response value in test data. By default max.score=1 (i.e.,binary test data).}
+
+\item{round.decimal}{The number of digits or decimal places for the imputed value. The default value is 0.}
 }
 \value{
 A data frame with all missing responses replaced by Integrated item means.
@@ -23,5 +25,5 @@ Integrated scores for items are obtained by rounding their means to the closest 
 }
 \examples{
  
-        ItemMean(test.data, Mvalue="8",max.score=1)
+        ItemMean(test.data, Mvalue="8",max.score=1,round.decimal=0)
 }

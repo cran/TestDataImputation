@@ -15,20 +15,20 @@ LogsticReg<-function (test.data, Mvalue="NA",max.score=1) {
   if (max.score==1){
   if (Mvalue == "NA") {
     test.data[] <- lapply(test.data, factor)
-    LR.out <- mice(test.data, m=1, method="logreg")
+    LR.out <- mice::mice(test.data, m=1, method="logreg")
           } else {test.data[test.data==Mvalue]<-NA
           test.data[] <- lapply(test.data, factor)
-          LR.out <- mice(test.data, m=1, method="logreg")
+          LR.out <- mice::mice(test.data, m=1, method="logreg")
           }
   } else if (max.score>1) {
     if (Mvalue == "NA") {
       test.data[] <- lapply(test.data, factor)
-      LR.out <- mice(test.data, m=1, method="polyreg")
+      LR.out <- mice::mice(test.data, m=1, method="polyreg")
     } else {test.data[test.data==Mvalue]<-NA
     test.data[] <- lapply(test.data, factor)
-    LR.out <- mice(test.data, m=1, method="polyreg")
+    LR.out <- mice::mice(test.data, m=1, method="polyreg")
     } }
-  dataout<-as.data.frame(complete(LR.out))
+  dataout<-as.data.frame(mice::complete(LR.out))
   test.data<-as.data.frame(dataout)
   return(test.data)
 }

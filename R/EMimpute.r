@@ -1,33 +1,41 @@
 #' EM Imputation
-#' @description This function imputes for all missing responses using EM imputation.
+#' @description This function imputes for all missing responses using EM imputation (see Finch, 2008) 
+#' <doi: 10.1111/j.1745-3984.2008.00062.x>.
 #' Integrated scores are obtained by rounding imputed values to the closest possible response value.
 #' @param test.data  Test data set (a data frame or a matrix) containing missing responses. 
 #' Missing values are coded as NA or other values (e.g., 8, 9).
 #' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.
 #' @param max.score  The max possible response value in test data. By default max.score=1 (i.e.,binary test data).
+#' @param round.decimal The number of digits or decimal places for the imputed value. The default value is 0.
 #' @return A data frame with all missing responses replaced by integrated imputed values.
-#' @import stats mice Amelia
+#' @import stats Amelia
 #' @examples  
-#'         EMimpute(test.data, Mvalue="8",max.score=1)
+#'         EMimpute(test.data, Mvalue="8",max.score=1,round.decimal=0)
 #' @export
+#' @references {
+#'  Finch, H. (2008).
+#' "Estimation of Item Response Theory Parameters in the Presence of Missing Data."
+#'  Journal of Educational Measurement, 45(3), 225-245. doi: 10.1111/j.1745-3984.2008.00062.x. 
+#' }
 
-EMimpute<-function (test.data, Mvalue="NA",max.score=1) {
+
+EMimpute<-function (test.data, Mvalue="NA",max.score=1,round.decimal=0) {
   if (Mvalue == "NA") {
-    EM.imp<-amelia(test.data, m = 1, boot.type = "none",
+    EM.imp<-Amelia::amelia(test.data, m = 1, boot.type = "none",
                    bound=cbind(rep(1:ncol(test.data)),
                                rep(-1000,ncol(test.data)),rep(1000,ncol(test.data))))
     data.imp<-data.frame(EM.imp$imputations$imp1)
     data.imp[data.imp<0]<-0
     data.imp[data.imp>max.score]<-max.score
-    test.data<-round(data.imp,digits=0)
+    test.data<-round(data.imp,digits=round.decimal)
           } else {test.data[test.data==Mvalue]<-NA
-          EM.imp<-amelia(test.data, m = 1, boot.type = "none",
+          EM.imp<-Amelia::amelia(test.data, m = 1, boot.type = "none",
                          bound=cbind(rep(1:ncol(test.data)),
                                      rep(-1000,ncol(test.data)),rep(1000,ncol(test.data))))
           data.imp<-data.frame(EM.imp$imputations$imp1)
           data.imp[data.imp<0]<-0
           data.imp[data.imp>max.score]<-max.score
-          test.data<-round(data.imp,digits=0)
+          test.data<-round(data.imp,digits=round.decimal)
       }
   test.data<-as.data.frame(test.data)
   return(test.data)
