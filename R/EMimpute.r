@@ -5,12 +5,13 @@
 #' @param test.data  Test data set (a data frame or a matrix) containing missing responses. 
 #' Missing values are coded as NA or other values (e.g., 8, 9).
 #' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.
-#' @param max.score  The max possible response value in test data. By default max.score=1 (i.e.,binary test data).
+#' @param max.score  The max possible response value in the test data. By default max.score=1 (i.e.,binary test data).
 #' @param round.decimal The number of digits or decimal places for the imputed value. The default value is 0.
 #' @return A data frame with all missing responses replaced by integrated imputed values.
-#' @import stats Amelia
+#' @import stats
+#' @importFrom Amelia amelia
 #' @examples  
-#'         EMimpute(test.data, Mvalue="8",max.score=1,round.decimal=0)
+#'         EMimpute(test.data, Mvalue="NA",max.score=1,round.decimal=0)
 #' @export
 #' @references {
 #'  Finch, H. (2008).

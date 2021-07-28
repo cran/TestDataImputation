@@ -9,7 +9,7 @@
 #' @return A data frame with all missing responses replaced by Integrated item means.
 #' @import stats
 #' @examples  
-#'         ItemMean(test.data, Mvalue="8",max.score=1,round.decimal=0)
+#'         ItemMean(test.data, Mvalue="NA",max.score=1,round.decimal=0)
 #' @export
 
 ItemMean<-function (test.data, Mvalue="NA",max.score=1,round.decimal=0) {

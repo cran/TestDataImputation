@@ -10,7 +10,7 @@
 #' @return A data frame with all missing responses replaced by person means.
 #' @import stats
 #' @examples  
-#'         PersonMean(test.data, Mvalue="8",max.score=1,round.decimal=0)
+#'         PersonMean(test.data, Mvalue="NA",max.score=1,round.decimal=0)
 #' @export
 #' @references {
 #' Sijtsma, K., & Van der Ark, L. A. (2003). 

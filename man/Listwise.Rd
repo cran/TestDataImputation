@@ -21,7 +21,7 @@ This function deletes examinees who report missing responses (see De Ayala et al
 }
 \examples{
  
-        Listwise(test.data, Mvalue="8")
+        Listwise(test.data, Mvalue="NA")
 }
 \references{
 {

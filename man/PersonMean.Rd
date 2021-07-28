@@ -26,7 +26,7 @@ by rounding their means to the closest possible response value.
 }
 \examples{
  
-        PersonMean(test.data, Mvalue="8",max.score=1,round.decimal=0)
+        PersonMean(test.data, Mvalue="NA",max.score=1,round.decimal=0)
 }
 \references{
 {

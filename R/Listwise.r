@@ -8,7 +8,7 @@
 #' @return A data frame with no missing responses.
 #' @import stats
 #' @examples  
-#'         Listwise(test.data, Mvalue="8")
+#'         Listwise(test.data, Mvalue="NA")
 #' @export
 #' @references {
 #'  De Ayala, R. J., Plake, B. S., & Impara, J. C. (2001). 

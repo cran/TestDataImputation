@@ -6,12 +6,13 @@
 #' @param Mvalue  Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.
 #' @param max.score  The max possible response value in test data. By default max.score=1 (i.e.,binary test data).
 #' @return A data frame with all missing responses replaced by integrated imputed values.
-#' @import stats mice
+#' @import stats 
+#' @importFrom mice mice complete
 #' @examples  
-#'         LogsticReg(test.data, Mvalue="8",max.score=1)
+#'         LogisticReg(test.data, Mvalue="NA",max.score=1)
 #' @export
 
-LogsticReg<-function (test.data, Mvalue="NA",max.score=1) {
+LogisticReg<-function (test.data, Mvalue="NA",max.score=1) {
   if (max.score==1){
   if (Mvalue == "NA") {
     test.data[] <- lapply(test.data, factor)

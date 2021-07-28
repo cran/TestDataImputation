@@ -13,7 +13,7 @@ Missing values are coded as NA or other values (e.g., 8, 9).}
 \item{Mvalue}{Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
 }
 \value{
-A data frame with all missing responses imputed.
+A data frame with all missing responses replaced by '0'.
 }
 \description{
 This function replaces all missing responses by zero (see Lord, 1974 <doi: 10.1111/j.1745-3984.1974.tb00996.x>; 
@@ -21,13 +21,13 @@ This function replaces all missing responses by zero (see Lord, 1974 <doi: 10.11
 }
 \examples{
  
-        TreatIncorrect(test.data, Mvalue="8")
+        TreatIncorrect(test.data, Mvalue="NA")
 }
 \references{
 {
  Lord, F. M. (1974).
 " Quick estimates of the relative efficiency of two tests as a function of ability level."
- Journal of Educational Measurement, 11(4), 247–254. doi: 10.1111/j.1745-3984.1974.tb00996.x. 
+ Journal of Educational Measurement, 11(4), 247-254. doi: 10.1111/j.1745-3984.1974.tb00996.x. 
 }
 
 {
@@ -39,6 +39,6 @@ This function replaces all missing responses by zero (see Lord, 1974 <doi: 10.11
 {
 Pohl, S., Gräfe, L., & Rose, N. (2014).
 "Dealing with omitted and not-reached items in competence tests evaluating approaches accounting for missing responses in item response theory models. "
-Educational and Psychological Measurement, 74(3), 423–452. doi: 10.1177/0013164413504926. 
+Educational and Psychological Measurement, 74(3), 423-452. doi: 10.1177/0013164413504926. 
 }
 }

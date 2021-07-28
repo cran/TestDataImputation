@@ -25,5 +25,5 @@ Integrated scores for items are obtained by rounding their means to the closest 
 }
 \examples{
  
-        ItemMean(test.data, Mvalue="8",max.score=1,round.decimal=0)
+        ItemMean(test.data, Mvalue="NA",max.score=1,round.decimal=0)
 }

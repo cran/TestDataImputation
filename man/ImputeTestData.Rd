@@ -18,18 +18,21 @@ Missing values are coded as NA or other values (e.g., 8, 9).}
 
 \item{Mvalue}{Missing response indicators in the data (e.g. "NA", "8", "9", etc.). Mvalue="NA" by default.}
 
-\item{max.score}{The max possible response value in test data. By default max.score=1 (i.e.,binary test data).}
+\item{max.score}{The max possible response value in test data. By default max.score=1 (i.e.,binary test data).
+max.score = 2 if the response categories are (0, 1, 2), etc. Note: For IN and RF, 
+the lowest response value should be zero (i.e., incorrect).}
 
-\item{method}{Missing response imputation methods. 
+\item{method}{Missing response imputation methods. \cr 
 "LW" (by default) represents listwise that deletes all examinees
-who reported missing responses (see De Ayala et al. 2001) <doi:10.1111/j.1745-3984.2001.tb01124.x>;
+who reported missing responses (see De Ayala et al. 2001) <doi:10.1111/j.1745-3984.2001.tb01124.x>; \cr 
 "IN" means treating all missing responses as incorrect (see Lord, 1974 <doi: 10.1111/j.1745-3984.1974.tb00996.x>; 
-Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>); 
-"PM" imputes for all missing responses of an examinee by his/her mean on the available items; 
-"IM" imputes for all missing responses of an item by its mean on the available responses; 
+Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>); \cr 
+"PM" imputes for all missing responses of an examinee by his/her mean on the available items; \cr 
+"IM" imputes for all missing responses of an item by its mean on the available responses; \cr 
 "TW" imputes for all missing responses using two-way imputation (if an examinee has no response to all items, 
 the missing responses are replaced by item means first; see Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); 
-"LR" imputes for all missing responses using logistic regression; 
+"RF" imputes for all missing responses using response function imputation (Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); \cr 
+"LR" imputes for all missing responses using logistic regression; \cr 
 "EM" imputes for all missing responses using EM imputation (see Finch, 2008) <doi: 10.1111/j.1745-3984.2008.00062.x>.}
 
 \item{round.decimal}{The number of digits or decimal places for the imputed value. The default value is 0.}
@@ -38,18 +41,18 @@ the missing responses are replaced by item means first; see Sijtsma & van der Ar
 A data frame with all missing responses replaced by integrated imputed values.
 }
 \description{
-This function imputes for all missing responses using selected miputation methods.
+This function imputes for all missing responses using the selected imputation method.
 Integrated scores are obtained by rounding imputed values to the closest possible response value.
 }
 \examples{
  
-        ImputeTestData(test.data, Mvalue="8",max.score=1, method ="TW",round.decimal=0)
+        ImputeTestData(test.data, Mvalue="NA",max.score=1, method ="TW",round.decimal=0)
 }
 \references{
 {
  De Ayala, R. J., Plake, B. S., & Impara, J. C. (2001). 
 "The impact of omitted responses on the accuracy of ability estimation in item response theory."
- Journal of Educational Measurement, 38(3), 213–234. doi:10.1111/j.1745-3984.2001.tb01124.x. 
+ Journal of Educational Measurement, 38(3), 213-234. doi:10.1111/j.1745-3984.2001.tb01124.x. 
 }
 
 {
@@ -61,7 +64,7 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
 {
  Lord, F. M. (1974).
 " Quick estimates of the relative efficiency of two tests as a function of ability level."
- Journal of Educational Measurement, 11(4), 247–254. doi: 10.1111/j.1745-3984.1974.tb00996.x. 
+ Journal of Educational Measurement, 11(4), 247-254. doi: 10.1111/j.1745-3984.1974.tb00996.x. 
 }
 
 {
@@ -73,7 +76,7 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
 {
 Pohl, S., Gräfe, L., & Rose, N. (2014).
 "Dealing with omitted and not-reached items in competence tests evaluating approaches accounting for missing responses in item response theory models. "
-Educational and Psychological Measurement, 74(3), 423–452. doi: 10.1177/0013164413504926. 
+Educational and Psychological Measurement, 74(3), 423-452. doi: 10.1177/0013164413504926. 
 }
 
 {
