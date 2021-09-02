@@ -1,12 +1,12 @@
-084cb7908187d860a34223b20801e616 *DESCRIPTION
+bfe87c51986ffa2b46589bcfc907b50e *DESCRIPTION
 301da8ed88fdf407138cec3682502c37 *NAMESPACE
 f9cd9b1b633fec90bbeb7c821910f57d *R/EMimpute.r
-d2a02c1954f447decdabb9581d26fca6 *R/ImputeTestData.r
+a43cbabad49cc9e3dd15a72f30fd8df1 *R/ImputeTestData.r
 5d0e92998b89da26c6d2cf45306d7b45 *R/ItemMean.r
 c3d6f3ac005b9b86d032b86c0e340bda *R/Listwise.r
 c54b4ca4db3bb7b3578dec3de2770628 *R/LogisticReg.r
 0714a67f45acafbdf60949368cd50857 *R/PersonMean.r
-99263eead3dd2104bc6ad608848b1edb *R/ResponseFun.r
+a6f333ca6405ac3438a934a04e0494dc *R/ResponseFun.r
 e82d17b953d24254c6af411f0d7b3934 *R/TreatIncorrect.r
 2b39e13375781cefc0d3ecaebf511459 *R/TwoWay.r
 15e1d731dcb1e13bf0b90d39b582b719 *data/test.data.rda

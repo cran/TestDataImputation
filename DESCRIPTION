@@ -1,8 +1,8 @@
 Package: TestDataImputation
 Type: Package
 Title: Missing Item Responses Imputation for Test and Assessment Data
-Version: 2.1
-Date: 2021-07-27
+Version: 2.2
+Date: 2021-08-30
 Authors@R: c(person("Shenghai", "Dai", role = c("aut", "cre"), 
                      email = "s.dai@wsu.edu"),
              person("Xiaolin", "Wang", role = "aut"),
@@ -28,6 +28,6 @@ NeedsCompilation: no
 LazyData: true
 License: GPL (>= 2)
 RoxygenNote: 7.1.1
-Packaged: 2021-07-28 00:27:45 UTC; s.dai
+Packaged: 2021-08-31 02:29:29 UTC; daish
 Repository: CRAN
-Date/Publication: 2021-07-28 05:00:08 UTC
+Date/Publication: 2021-09-02 14:50:57 UTC
