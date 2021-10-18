@@ -21,8 +21,9 @@ A data frame with all missing responses replaced by integrated imputed values.
 }
 \description{
 This function imputes for all missing responses using EM imputation (see Finch, 2008) 
-<doi: 10.1111/j.1745-3984.2008.00062.x>.
-Integrated scores are obtained by rounding imputed values to the closest possible response value.
+<doi: 10.1111/j.1745-3984.2008.00062.x>. The Amelia package (Honaker et al., 2011 <doi: 10.18637/jss.v045.i07>)
+is used for the imputation. Integrated scores are then obtained by rounding imputed values 
+to the closest possible response value.
 }
 \examples{
  
@@ -33,5 +34,11 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
  Finch, H. (2008).
 "Estimation of Item Response Theory Parameters in the Presence of Missing Data."
  Journal of Educational Measurement, 45(3), 225-245. doi: 10.1111/j.1745-3984.2008.00062.x. 
+}
+
+{
+ Honaker, J., King, G., & Blackwell, M. (2011).
+"Amelia II: A program for missing data."
+ Journal of statistical software, 45(1), 1-47. doi: 10.18637/jss.v045.i07. 
 }
 }

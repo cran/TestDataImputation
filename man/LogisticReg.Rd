@@ -18,10 +18,19 @@ Missing values are coded as NA or other values (e.g., 8, 9).}
 A data frame with all missing responses replaced by integrated imputed values.
 }
 \description{
-This function imputes for all missing responses using logistic regression.
-Integrated scores are obtained by rounding imputed values to the closest possible response value.
+This function imputes for all missing responses using logistic regression (for binary responses) or
+polytomous regression (for polytomous responses). The mice () function with default settings 
+from the mice package (Van Buuren & Groothuis-Oudshoorn, 2011 <doi: 10.18637/jss.v045.i03>) is used 
+to impute for the missing responses.
 }
 \examples{
  
         LogisticReg(test.data, Mvalue="NA",max.score=1)
+}
+\references{
+{
+Van Buuren, S., & Groothuis-Oudshoorn, K. (2011).
+"mice: Multivariate imputation by chained equations in R."
+ Journal of statistical software, 45(1), 1-67. DOI: 10.18637/jss.v045.i03.
+}
 }

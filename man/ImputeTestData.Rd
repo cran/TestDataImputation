@@ -24,16 +24,20 @@ the lowest response value should be zero (i.e., incorrect).}
 
 \item{method}{Missing response imputation methods. \cr 
 "LW" (by default) represents listwise that deletes all examinees
-who reported missing responses (see De Ayala et al. 2001) <doi:10.1111/j.1745-3984.2001.tb01124.x>; \cr 
+who reported missing responses (see De Ayala et al. 2001 <doi:10.1111/j.1745-3984.2001.tb01124.x>) \cr 
 "IN" means treating all missing responses as incorrect (see Lord, 1974 <doi: 10.1111/j.1745-3984.1974.tb00996.x>; 
-Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>); \cr 
-"PM" imputes for all missing responses of an examinee by his/her mean on the available items; \cr 
-"IM" imputes for all missing responses of an item by its mean on the available responses; \cr 
+Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>). \cr 
+"PM" imputes for all missing responses of an examinee by his/her mean on the available items. \cr 
+"IM" imputes for all missing responses of an item by its mean on the available responses. \cr 
 "TW" imputes for all missing responses using two-way imputation (if an examinee has no response to all items, 
-the missing responses are replaced by item means first; see Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); 
-"RF" imputes for all missing responses using response function imputation (Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); \cr 
-"LR" imputes for all missing responses using logistic regression; \cr 
-"EM" imputes for all missing responses using EM imputation (see Finch, 2008) <doi: 10.1111/j.1745-3984.2008.00062.x>.}
+the missing responses are replaced by item means first; see Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>). 
+"RF" imputes for all missing responses using response function imputation (Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>). \cr 
+"LR" imputes for all missing responses using logistic regression (for binary responses) and polytomous regression
+(for polytmous responses) with mice package (Van Buuren & Groothuis-Oudshoorn, 2011 <doi: 10.18637/jss.v045.i03>). \cr 
+"PMM" imputes for all missing responses using predictive mean matching with mice package (Van Buuren & Groothuis-Oudshoorn, 2011 
+<doi: 10.18637/jss.v045.i03>). \cr 
+"EM" imputes for all missing responses using EM imputation with the Amelia package (Honaker et al., 2011 <doi: 10.18637/jss.v045.i07>). 
+The imputed values are then rounded to the closest possible response value. (see Finch, 2008 <doi: 10.1111/j.1745-3984.2008.00062.x>).}
 
 \item{round.decimal}{The number of digits or decimal places for the imputed value. The default value is 0.}
 }
@@ -62,6 +66,12 @@ Integrated scores are obtained by rounding imputed values to the closest possibl
 }
 
 {
+ Honaker, J., King, G., & Blackwell, M. (2011).
+"Amelia II: A program for missing data."
+ Journal of statistical software, 45(1), 1-47. doi: 10.18637/jss.v045.i07. 
+}
+
+{
  Lord, F. M. (1974).
 " Quick estimates of the relative efficiency of two tests as a function of ability level."
  Journal of Educational Measurement, 11(4), 247-254. doi: 10.1111/j.1745-3984.1974.tb00996.x. 
@@ -83,5 +93,11 @@ Educational and Psychological Measurement, 74(3), 423-452. doi: 10.1177/00131644
 Sijtsma, K., & Van der Ark, L. A. (2003). 
 "Investigation and treatment of missing item scores in test and questionnaire data."
  Multivariate Behavioral Research, 38(4), 505-528. doi: 10.1207/s15327906mbr3804_4.
+}
+
+{
+Van Buuren, S., & Groothuis-Oudshoorn, K. (2011).
+"mice: Multivariate imputation by chained equations in R."
+ Journal of statistical software, 45(1), 1-67. DOI: 10.18637/jss.v045.i03.
 }
 }

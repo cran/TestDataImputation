@@ -10,16 +10,20 @@
 #' the lowest response value should be zero (i.e., incorrect).
 #' @param method  Missing response imputation methods. \cr 
 #' "LW" (by default) represents listwise that deletes all examinees
-#' who reported missing responses (see De Ayala et al. 2001) <doi:10.1111/j.1745-3984.2001.tb01124.x>; \cr 
+#' who reported missing responses (see De Ayala et al. 2001 <doi:10.1111/j.1745-3984.2001.tb01124.x>) \cr 
 #' "IN" means treating all missing responses as incorrect (see Lord, 1974 <doi: 10.1111/j.1745-3984.1974.tb00996.x>; 
-#' Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>); \cr 
-#' "PM" imputes for all missing responses of an examinee by his/her mean on the available items; \cr 
-#' "IM" imputes for all missing responses of an item by its mean on the available responses; \cr 
+#' Mislevy & Wu, 1996 <doi: 10.1002/j.2333-8504.1996.tb01708.x>; Pohl et al., 2014 <doi: 10.1177/0013164413504926>). \cr 
+#' "PM" imputes for all missing responses of an examinee by his/her mean on the available items. \cr 
+#' "IM" imputes for all missing responses of an item by its mean on the available responses. \cr 
 #' "TW" imputes for all missing responses using two-way imputation (if an examinee has no response to all items, 
-#' the missing responses are replaced by item means first; see Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); 
-#' "RF" imputes for all missing responses using response function imputation (Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>); \cr 
-#' "LR" imputes for all missing responses using logistic regression; \cr 
-#' "EM" imputes for all missing responses using EM imputation (see Finch, 2008) <doi: 10.1111/j.1745-3984.2008.00062.x>.
+#' the missing responses are replaced by item means first; see Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>). 
+#' "RF" imputes for all missing responses using response function imputation (Sijtsma & van der Ark, 2003 <doi: 10.1207/s15327906mbr3804_4>). \cr 
+#' "LR" imputes for all missing responses using logistic regression (for binary responses) and polytomous regression
+#' (for polytmous responses) with mice package (Van Buuren & Groothuis-Oudshoorn, 2011 <doi: 10.18637/jss.v045.i03>). \cr 
+#' "PMM" imputes for all missing responses using predictive mean matching with mice package (Van Buuren & Groothuis-Oudshoorn, 2011 
+#' <doi: 10.18637/jss.v045.i03>). \cr 
+#' "EM" imputes for all missing responses using EM imputation with the Amelia package (Honaker et al., 2011 <doi: 10.18637/jss.v045.i07>). 
+#' The imputed values are then rounded to the closest possible response value. (see Finch, 2008 <doi: 10.1111/j.1745-3984.2008.00062.x>).
 #' @param round.decimal The number of digits or decimal places for the imputed value. The default value is 0.
 #' @return A data frame with all missing responses replaced by integrated imputed values.
 #' @import stats  
@@ -37,6 +41,11 @@
 #'  Finch, H. (2008).
 #' "Estimation of Item Response Theory Parameters in the Presence of Missing Data."
 #'  Journal of Educational Measurement, 45(3), 225-245. doi: 10.1111/j.1745-3984.2008.00062.x. 
+#' }
+#' @references {
+#'  Honaker, J., King, G., & Blackwell, M. (2011).
+#' "Amelia II: A program for missing data."
+#'  Journal of statistical software, 45(1), 1-47. doi: 10.18637/jss.v045.i07. 
 #' }
 #' @references {
 #'  Lord, F. M. (1974).
@@ -57,6 +66,11 @@
 #' Sijtsma, K., & Van der Ark, L. A. (2003). 
 #' "Investigation and treatment of missing item scores in test and questionnaire data."
 #'  Multivariate Behavioral Research, 38(4), 505-528. doi: 10.1207/s15327906mbr3804_4.
+#' }
+#' @references {
+#' Van Buuren, S., & Groothuis-Oudshoorn, K. (2011).
+#' "mice: Multivariate imputation by chained equations in R."
+#'  Journal of statistical software, 45(1), 1-67. DOI: 10.18637/jss.v045.i03.
 #' }
 
 
@@ -238,6 +252,16 @@ ImputeTestData<-function (test.data, Mvalue="NA",max.score=1, method ="LW",round
         } }
       dataout<-as.data.frame(mice::complete(LR.out))
       test.data<-as.data.frame(dataout)
+   } else if (method=="PMM") {
+     if (Mvalue == "NA") {
+       test.data[] <- lapply(test.data, factor)
+       pmm.out <- mice::mice(test.data, m=1, method="pmm")
+     } else {test.data[test.data==Mvalue]<-NA
+     test.data[] <- lapply(test.data, factor)
+     pmm.out <- mice::mice(test.data, m=1, method="pmm")
+     }
+     dataout<-as.data.frame(mice::complete(pmm.out))
+     test.data<-as.data.frame(dataout)
     } else if (method=="EM"){
       if (Mvalue == "NA") {
         EM.imp<-Amelia::amelia(test.data, m = 1, boot.type = "none",
